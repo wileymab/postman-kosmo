@@ -2,45 +2,28 @@
 Parameter management for Postman requests.
 
 ## Overview
-Postman is an absolutely awesome REST client and API development tool. 
-But I think there's one pretty HUGE miss in the user interface - parameter management.
+Postman is an absolutely awesome REST client and API development tool. But I think there's one pretty HUGE miss in the user interface - parameter management.
 
-Postman does an excellent job of letting the user define environments and some shared variables,
-but there's no dead simple way to switch between use cases as you're developing or debugging. 
-For myself this meant one of two solutions would be at play:
+Postman does an excellent job of letting the user define environments and some shared variables, but there's no dead simple way to switch between use cases as you're developing or debugging. For myself this meant one of two solutions would be at play:
 
-1. **Make a separate Postman request representing each potential combination of parameters.** Great for testing, 
-not so great for active development. On the one hand you get a collection of single requests documenting
-certain use cases. On the other, if you make changes to the API you have to edit every single one of those 
-specific requests.
-2. **Keep sets of parameters in external text files and paste in values one-by-one as needed.** ... 
-I think the pain here is self-explanatory.
+1. **Make a separate Postman request representing each potential combination of parameters.** Great for testing, not so great for active development. On the one hand you get a collection of single requests documenting certain use cases. On the other, if you make changes to the API you have to edit every single one of those specific requests.
+2. **Keep sets of parameters in external text files and paste in values one-by-one as needed.** ... I think the pain here is self-explanatory.
 
 Even in simple APIs this situation can be frustrating. 
 
-What's missing is a way to separate *how* a request is made (the request structure) 
-from *what* it should consume (the request data or parameters.) Kosmo attempts to solve this.
+What's missing is a way to separate *how* a request is made (the request structure) from *what* it should consume (the request data or parameters.) Kosmo attempts to solve this.
 
-Kosmo is a very lightweight JavaScript Pre-request script which provides a way to build
-and document collections of parameters for your API, and a simple way to quickly swap between
-collections. The sample collection provided also demonstrates how to build more complex and  
-better modularized compositions of parameters to make working with complex APIs 
-a bit easier to manage.
+Kosmo is a very lightweight JavaScript Pre-request script which provides a way to build and document collections of parameters for your API, and a simple way to quickly swap between collections. The sample collection provided also demonstrates how to build more complex and better modularized compositions of parameters to make working with complex APIs a bit easier to manage.
 
 ## How it Works
 
 Kosmo is just a small JavaScript function implemented in a Postman request Pre-request script. That's it.
 
-You create a standalone request (ideally a no-op request to localhost at a dead port), drop the *contents* of 
-`kosmo.js` at the top of the request's Pre-request script editor, create a JSON object below that to define
-the parameters you want to use in you API requests, and use Kosmo to set those parameters as Postman Globals.
+You create a standalone request (ideally a no-op request to localhost at a dead port), drop the *contents* of `kosmo.js` at the top of the request's Pre-request script editor, create a JSON object below that to define the parameters you want to use in you API requests, and use Kosmo to set those parameters as Postman Globals.
 
-Kosmo will recurse the JSON object provided to the `setParamsByObject` function. Any props with `object` values
-will be traversed into and scanned for parameters. All other props are assumed to be valid name-value pairs that
-you want to inject as variables in your Postman Workspace's Global variables set.
+Kosmo will recurse the JSON object provided to the `setParamsByObject` function. Any props with `object` values will be traversed into and scanned for parameters. All other props are assumed to be valid name-value pairs that you want to inject as variables in your Postman Workspace's Global variables set.
 
-Kosmo also provides a cleanup function, `clearParams`, which will remove all (and *only*) the values it most recently set, 
-so you can keep your Workspace clean when you need to.
+Kosmo also provides a cleanup function, `clearParams`, which will remove all (and *only*) the values it most recently set, so you can keep your Workspace clean when you need to.
 
 ## Usage
 
@@ -75,3 +58,8 @@ kosmo.setParamsByObject(params)
 
 // Click SEND on the request.
 ```
+![Params have been set][params-example]
+![Params have been cleared][params-cleared-example]
+
+[params-example](as)
+[params-cleared-example](as)
