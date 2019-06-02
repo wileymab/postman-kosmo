@@ -96,9 +96,11 @@ kosmo.setParamsByObject(otherParams)
 
 // Click SEND on the request.
 ```
+![Params swapped quickly](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/kosmo-param-swap.gif)
 
 
 
-
+<!-- 
 ![Params have been set](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-example.png)
 ![Params have been cleared](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-cleared-example.png)
+-->
