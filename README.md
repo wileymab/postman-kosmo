@@ -38,6 +38,8 @@ The easiest way to get up and running is to:
 7. Pass your newly minted JSON object to the `setParamsByObject` function at the bottom of the script.
 8. Click `Send`.
 
+---
+
 For a more custom start ...
 ```javascript
 // This the Pre-request script editor for you parameter management no-op request.
@@ -58,8 +60,53 @@ kosmo.setParamsByObject(params)
 
 // Click SEND on the request.
 ```
+<<<<<<< HEAD
 ![Params have been set][params-example]
 ![Params have been cleared][params-cleared-example]
 
 [params-example](as)
 [params-cleared-example](as)
+=======
+
+Once you hit the `Send` button, your parameters will be available as Global variables in your Workspace, and you can wire those parameters up to your requests. When you execute your request, Postman pulls the Globals in by name (e.g. "PARAM_1"), so the name you use in your parameters JSON object, is the same exact name you'll use in your Postman API request.
+
+```javascript
+// Sample JSON body for API request.
+{
+  answerToLife: {{PARAM_1}},
+  email: "{{PARAM_2}}",
+  userId: "{{PARAM_3}}"
+}
+```
+
+When it's time to change parameters for a different use case add another parameters object and pass it to the `setParamsByObject` function instead. Then click `Send`.
+
+```javascript
+// ...
+
+// Define a JSON object of parameters. 
+var params = {
+  PARAM_1: 42,
+  PARAM_2: "someperson@email.com",
+  PARAM_3: "imauserid"
+}
+
+// Define a different set of parameters for a different scenario.
+var otherParams = {
+  PARAM_1: 42,
+  PARAM_2: "vegeta@gmail.com",
+  PARAM_3: "veg9000"
+}
+
+// Pass your parameters object to the setup function
+kosmo.setParamsByObject(otherParams) 
+
+// Click SEND on the request.
+```
+
+
+
+
+![Params have been set](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-example.png)
+![Params have been cleared](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-cleared-example.png)
+>>>>>>> 7e738346d31764e80bae95cd73cb509df820e9f5
