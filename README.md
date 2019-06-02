@@ -60,13 +60,6 @@ kosmo.setParamsByObject(params)
 
 // Click SEND on the request.
 ```
-<<<<<<< HEAD
-![Params have been set][params-example]
-![Params have been cleared][params-cleared-example]
-
-[params-example](as)
-[params-cleared-example](as)
-=======
 
 Once you hit the `Send` button, your parameters will be available as Global variables in your Workspace, and you can wire those parameters up to your requests. When you execute your request, Postman pulls the Globals in by name (e.g. "PARAM_1"), so the name you use in your parameters JSON object, is the same exact name you'll use in your Postman API request.
 
@@ -109,4 +102,3 @@ kosmo.setParamsByObject(otherParams)
 
 ![Params have been set](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-example.png)
 ![Params have been cleared](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-cleared-example.png)
->>>>>>> 7e738346d31764e80bae95cd73cb509df820e9f5
