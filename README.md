@@ -6,7 +6,7 @@ Postman is an absolutely awesome REST client and API development tool. But I thi
 
 Postman does an excellent job of letting the user define environments and some shared variables, but there's no dead simple way to switch between use cases as you're developing or debugging. For myself this meant one of two solutions would be at play:
 
-1. **Make a separate Postman request representing each potential combination of parameters.** Great for testing, not so great for active development. On the one hand you get a collection of single requests documenting certain use cases. On the other, if you make changes to the API you have to edit every single one of those specific requests.
+1. **Make a separate Postman request representing each potential combination of parameters.** Great for testing, not so great for active development. On the one hand you get a collection of requests each documenting a certain use case. On the other hand, if you make changes to the API contract you have to edit every single one of those specific requests.
 2. **Keep sets of parameters in external text files and paste in values one-by-one as needed.** ... I think the pain here is self-explanatory.
 
 Even in simple APIs this situation can be frustrating. 
@@ -26,6 +26,8 @@ Kosmo will recurse the JSON object provided to the `setParamsByObject` function.
 Kosmo also provides a cleanup function, `clearParams`, which will remove all (and *only*) the values it most recently set, so you can keep your Workspace clean when you need to.
 
 ## Usage
+
+### Getting Started
 
 The easiest way to get up and running is to:
 
@@ -60,17 +62,7 @@ kosmo.setParamsByObject(params)
 
 // Click SEND on the request.
 ```
-
-Once you hit the `Send` button, your parameters will be available as Global variables in your Workspace, and you can wire those parameters up to your requests. When you execute your request, Postman pulls the Globals in by name (e.g. "PARAM_1"), so the name you use in your parameters JSON object, is the same exact name you'll use in your Postman API request.
-
-```javascript
-// Sample JSON body for API request.
-{
-  answerToLife: {{PARAM_1}},
-  email: "{{PARAM_2}}",
-  userId: "{{PARAM_3}}"
-}
-```
+### Making Changes
 
 When it's time to change parameters for a different use case add another parameters object and pass it to the `setParamsByObject` function instead. Then click `Send`.
 
@@ -96,11 +88,24 @@ kosmo.setParamsByObject(otherParams)
 
 // Click SEND on the request.
 ```
+
 ![Params swapped quickly](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/kosmo-param-swap.gif)
 
+> **NOTE:** The "KOSMO_CATALOG" is a managerial variable that captures the last known parameters that were set. This catalog of variable names enables the `clearParams` functionality. Be careful not to remove this variable. If you do, you may put your Workspace in a state to need manual clean up on the Globals. ...  Not catastrophic, but definitely annoying.
 
+Once you hit the `Send` button, your parameters will be available as Global variables in your Workspace, and you can wire those parameters up to your requests. When you execute your request, Postman pulls the Globals in by name (e.g. "PARAM_1"), so the name you use in your parameters JSON object, is the same exact name you'll use in your Postman API request.
 
-<!-- 
-![Params have been set](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-example.png)
-![Params have been cleared](https://raw.githubusercontent.com/wileymab/postman-kosmo/master/docs/images/params-cleared-example.png)
--->
+```javascript
+// Sample JSON body for actual API request.
+{
+  answerToLife: {{PARAM_1}},
+  email: "{{PARAM_2}}",
+  userId: "{{PARAM_3}}"
+}
+```
+
+## Enjoy!
+
+That's it! Hope you find this useful. 
+
+And remember: Ideas and pull requests are always welcome.
